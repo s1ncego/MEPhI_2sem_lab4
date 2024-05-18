@@ -8,4 +8,5 @@ add_executable(lab4Buntsev main.cpp
         tests.h
         set.h
         binaryTree.h
-        binaryHeap.h)
+        binaryHeap.h
+        structures.h)

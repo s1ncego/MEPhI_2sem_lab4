@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "tests.h"
+#include "structures.h"
 
 int main() {
 
@@ -11,13 +12,14 @@ int main() {
     int typeStructure;
     cin >> typeStructure;
 
-    cout << "Press 1 to use Integer, Press 2 to use Float:\n";
+    cout << "Press 1 to use Integer, Press 2 to use Float, Press 3 to use Person:\n";
     int typeElement;
     cin >> typeElement;
 
 
     int initInteger;
     double initFloat;
+    int ID;
     if (typeElement == 1) {
         cout << "\nInput first element of structure: \n";
         cin >> initInteger;
@@ -53,6 +55,41 @@ int main() {
                 break;
             case 3:
                 SetMenu(initFloat);
+
+                break;
+            default:
+                cout << "\nUnknown command, try again.\n";
+
+                break;
+        }
+    } else if (typeElement == 3) {
+        cout << "\nInput ID of the person: \n";
+        cin >> ID;
+
+        cout << "\nInput First name of the person: \n";
+        string FN;
+        cin >> FN;
+
+        cout << "\nInput Second name of the person: \n";
+        string SN;
+        cin >> SN;
+
+        cout << "\nInput Second name of the person: \n";
+        string LN;
+        cin >> LN;
+
+        Person person(ID, FN, SN, LN);
+        switch (typeStructure) {
+            case 1:
+                BinaryTreePersonMenu(ID, person);
+
+                break;
+            case 2:
+                BinaryHeapPersonMenu(ID, person);
+
+                break;
+            case 3:
+                SetPersonMenu(ID, person);
 
                 break;
             default:

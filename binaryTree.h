@@ -38,7 +38,7 @@ private:
         return nullptr;
     }
 
-    void remove(node *delNode_) {
+    void removeElement(node *delNode_) {
         node *delNode = delNode_;
         if (delNode == nullptr) return;
         if (delNode->right == nullptr && delNode->left == nullptr) {
@@ -75,7 +75,7 @@ private:
             T tmp_value = delNode->elem;
             delNode->elem = swapNode->elem;
             swapNode->elem = tmp_value;
-            this->remove(swapNode);
+            this->removeElement(swapNode);
         }
     }
 
@@ -130,7 +130,7 @@ public:
         delete this->root;
     }
 
-    void add(const T elem) {
+    void addElement(const T elem) {
         node *nodePtr = this->root;
         this->size++;
         if (this->root == nullptr) {
@@ -161,24 +161,15 @@ public:
         }
     }
 
-    void remove(T elem) {
+    void removeElement(T elem) {
         node *delNode = search(elem);
         if (delNode == nullptr) return;
 
-        remove(delNode);
+        removeElement(delNode);
         --this->size;
     }
 
-    T minimum() {
-        if (this->root == nullptr) return T(0);
-        node *nodePtr = this->root;
-        while (nodePtr->left != nullptr) {
-            nodePtr = nodePtr->left;
-        }
-        return nodePtr->elem;
-    }
-
-    T maximum() {
+    T maxElement() {
         node *nodePtr = this->root;
         if (this->root == nullptr) {
             return T(0);
@@ -189,7 +180,16 @@ public:
         return nodePtr->elem;
     }
 
-    bool existence(const T elem) {
+    T minElement() {
+        if (this->root == nullptr) return T(0);
+        node *nodePtr = this->root;
+        while (nodePtr->left != nullptr) {
+            nodePtr = nodePtr->left;
+        }
+        return nodePtr->elem;
+    }
+
+    bool existenceOfElement(const T elem) {
         if (search(elem) != nullptr) {
             return true;
         } else return false;
@@ -211,6 +211,10 @@ public:
     [[nodiscard]] size_t getSize() const {
         return this->size;
     }
+
+    /*void getFirstN(int ID) {
+
+    }*/
 
     void printAll() {
         if (this->root == nullptr) return;

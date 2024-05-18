@@ -62,14 +62,13 @@ public:
     }
 
     T getMinimum() {
-        if (!this->size) {
-            std::cout << "QUEUE IS EMPTY!";
+        if (this->size == 0) {
             exit(1);
         }
         return this->data[0];
     }
 
-    void add(T elem) {
+    void addElement(T elem) {
         T *newdata = new T[this->size + 1];
         for (int i = 0; i < this->size; i++) {
             newdata[i] = this->data[i];
@@ -81,27 +80,25 @@ public:
         this->siftUp(this->size - 1);
     }
 
-    void changeElement(T oldelem, T newelem) {
+    void changeElement(T oldElement, T newElement) {
         int index = -1;
         for (int i = 0; i < this->size; i++) {
-            if (this->data[i] == oldelem) index = i;
+            if (this->data[i] == oldElement) index = i;
         }
         if (index < 0) {
-            std::cout << "\nTHERE IS NO SUCH ELEMENT!\n";
             return;
         }
-        this->data[index] = newelem;
+        this->data[index] = newElement;
 
-        if (newelem < oldelem) {
+        if (newElement < oldElement) {
             this->siftUp(index);
         } else {
             this->siftDown(index);
         }
     }
 
-    void eraseMin() {
+    void eraseMinimum() {
         if (this->size == 0) {
-            std::cout << "HEAP IS EMPTY!";
             exit(1);
         }
         T *newData = new T[this->size - 1];
@@ -117,21 +114,21 @@ public:
         this->siftDown(0);
     }
 
-    bool existence(T elem) const {
+    bool existenceOfElement(T elem) const {
         for (int i = 0; i < this->size; i++) {
             if (this->data[i] == elem) return true;
         }
         return false;
     }
 
-    void remove(T elem) {
-        if (this->existence(elem) == false) {
+    void removeElement(T elem) {
+        if (this->existenceOfElement(elem) == false) {
             return;
         }
         T newElem = this->data[0];
         newElem--;
         this->changeElement(elem, newElem);
-        this->eraseMin();
+        this->eraseMinimum();
     }
 
     void show() const {
@@ -148,12 +145,6 @@ public:
                 tabulation_indicator += two_in_power;
                 std::cout << "\n";
             }
-        }
-    }
-
-    void printAll() {
-        for (int i = 0; i < this->size; i++) {
-            std::cout << data[i] << " ";
         }
     }
 };

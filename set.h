@@ -14,20 +14,20 @@ public:
 
     ~Set() = default;
 
-    void add(const T elem) {
-        if (this->existence(elem) == true) {
+    void addElement(const T elem) {
+        if (this->existenceOfElement(elem) == true) {
             return;
         }
-        this->set->add(elem);
+        this->set->addElement(elem);
     }
 
-    bool existence(const T elem) const {
-        return this->set->existence(elem);
+    bool existenceOfElement(const T elem) const {
+        return this->set->existenceOfElement(elem);
     }
 
-    void remove(const T elem) {
-        if (this->existence(elem) == true) {
-            this->set->remove(elem);
+    void removeElement(const T elem) {
+        if (this->existenceOfElement(elem) == true) {
+            this->set->removeElement(elem);
         }
     }
 
