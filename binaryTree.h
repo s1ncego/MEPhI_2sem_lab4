@@ -1,5 +1,9 @@
 #pragma once
 
+#include <iostream>
+#include "structures.h"
+#include "func.h"
+
 template<typename T>
 class BinaryTree {
 private:
@@ -7,7 +11,7 @@ private:
         node *parent = nullptr;
         node *left = nullptr;
         node *right = nullptr;
-        T elem = T(0);
+        T elem = T();
     };
     node *root = nullptr;
     size_t size = 0;
@@ -32,6 +36,18 @@ private:
             if (elem < nodePtr->elem) {
                 nodePtr = nodePtr->left;
             } else if (elem > nodePtr->elem) {
+                nodePtr = nodePtr->right;
+            } else return nodePtr;
+        }
+        return nullptr;
+    }
+
+    node *searchForID(int ID) {
+        node *nodePtr = this->root;
+        while (nodePtr != nullptr) {
+            if (ID < nodePtr->elem.getID()) {
+                nodePtr = nodePtr->left;
+            } else if (ID > nodePtr->elem.getID()) {
                 nodePtr = nodePtr->right;
             } else return nodePtr;
         }
@@ -104,6 +120,48 @@ private:
         }
     }
 
+    void Map(node *nodePtr) {
+        if (nodePtr == nullptr) {
+            return;
+        }
+        if (nodePtr->left != nullptr) {
+            Map(nodePtr->left);
+            helpFuncMap(nodePtr->left->elem);
+        }
+        if (nodePtr->right != nullptr) {
+            Map(nodePtr->right);
+            helpFuncMap(nodePtr->right->elem);
+        }
+    }
+
+    void Where(node *nodePtr) {
+        if (nodePtr == nullptr) {
+            return;
+        }
+        if (nodePtr->left != nullptr) {
+            Where(nodePtr->left);
+            if (!helpFuncWhere(nodePtr->left->elem)) {
+                removeElement(nodePtr->left->elem);
+            }
+        }
+        if (nodePtr->right != nullptr) {
+            Where(nodePtr->right);
+            if (!helpFuncWhere(nodePtr->right->elem)) {
+                removeElement(nodePtr->left->elem);
+            }
+        }
+    }
+
+    void getFullname(node *nodePtr) {
+        if (nodePtr == nullptr) {
+            return;
+        } else {
+            std::cout << "\nFirst name: " << nodePtr->elem.getFirstName();
+            std::cout << "\nSecond name: " << nodePtr->elem.getSecondName();
+            std::cout << "\nLast name: " << nodePtr->elem.getLastName();
+        }
+    }
+
     void printAll(node *nodePtr) {
         if (nodePtr == nullptr) return;
         if (nodePtr->left != nullptr) {
@@ -172,7 +230,7 @@ public:
     T maxElement() {
         node *nodePtr = this->root;
         if (this->root == nullptr) {
-            return T(0);
+            return T();
         }
         while (nodePtr->right != nullptr) {
             nodePtr = nodePtr->right;
@@ -181,7 +239,9 @@ public:
     }
 
     T minElement() {
-        if (this->root == nullptr) return T(0);
+        if (this->root == nullptr) {
+            return T();
+        }
         node *nodePtr = this->root;
         while (nodePtr->left != nullptr) {
             nodePtr = nodePtr->left;
@@ -212,9 +272,26 @@ public:
         return this->size;
     }
 
-    /*void getFirstN(int ID) {
+    void Map() {
+        if (this->root == nullptr) return;
+        Map(this->root);
+        helpFuncMap(this->root->elem);
+    }
 
-    }*/
+    void Where() {
+        if (this->root == nullptr) return;
+        if (helpFuncWhere(this->root->elem)) {
+            Where(this->root);
+        }
+    }
+
+    void getFullname(int ID) {
+        node *nameNode = searchForID(ID);
+        if (nameNode == nullptr) {
+            return;
+        }
+        getFullname(nameNode);
+    }
 
     void printAll() {
         if (this->root == nullptr) return;

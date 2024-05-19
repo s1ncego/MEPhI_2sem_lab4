@@ -1,10 +1,12 @@
 #pragma once
 
+#include "func.h"
+
 template<class T>
 class BinaryHeap {
 private:
-    int size = 0;
-    T *data = new T[1];
+    size_t size;
+    T *data;
 
 private:
 
@@ -45,11 +47,18 @@ private:
         }
     }
 
+    void GetFullname(const size_t index) {
+        std::cout << "\nFirst name: " << this->data[index].getFirstName();
+        std::cout << "\nSecond name: " << this->data[index].getSecondName();
+        std::cout << "\nLast name: " << this->data[index].getLastName();
+    }
+
 public:
 
     BinaryHeap(T elem) {
-        data[0] = elem;
         this->size = 1;
+        data = new T[this->size];
+        data[0] = elem;
     }
 
     ~BinaryHeap() {
@@ -75,7 +84,8 @@ public:
         }
         newdata[this->size] = elem;
         this->size++;
-        delete[] this->data;
+
+        delete[] data;
         this->data = newdata;
         this->siftUp(this->size - 1);
     }
@@ -116,7 +126,9 @@ public:
 
     bool existenceOfElement(T elem) const {
         for (int i = 0; i < this->size; i++) {
-            if (this->data[i] == elem) return true;
+            if (this->data[i] == elem) {
+                return true;
+            }
         }
         return false;
     }
@@ -126,7 +138,7 @@ public:
             return;
         }
         T newElem = this->data[0];
-        newElem--;
+        //newElem--;
         this->changeElement(elem, newElem);
         this->eraseMinimum();
     }
@@ -144,6 +156,29 @@ public:
                 two_in_power *= 2;
                 tabulation_indicator += two_in_power;
                 std::cout << "\n";
+            }
+        }
+    }
+
+    void Map() {
+        for (size_t i = getSize(); i > 0; --i) {
+            helpFuncMap(this->data[i]);
+        }
+        helpFuncMap(this->data[0]);
+    }
+
+    void Where() {
+        for (int i = getSize(); i >= 0; --i) {
+            if (!helpFuncWhere(this->data[i])) {
+                removeElement(this->data[i]);
+            }
+        }
+    }
+
+    void getFullname(int ID) {
+        for (int i = 0; i < this->size; i++) {
+            if (this->data[i].getID() == ID) {
+                GetFullname(i);
             }
         }
     }

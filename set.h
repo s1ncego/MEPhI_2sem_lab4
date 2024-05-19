@@ -38,4 +38,16 @@ public:
     int getSize() {
         return this->set->getSize();
     }
+
+    void Map(){
+        this->set->Map();
+    }
+
+    void Where(){
+        this->set->Where();
+    }
+
+    void getFullname(int id){
+        this->set->getFullname(id);
+    }
 };

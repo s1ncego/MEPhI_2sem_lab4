@@ -1,10 +1,8 @@
-#pragma once
-
-#include  <iostream>
 #include <cassert>
 #include "set.h"
+#include "binaryHeap.h"
 
-void Test() {
+void testBinaryTree() {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~~~~~~~~~~BINARY TREE TEST~~~~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -28,7 +26,9 @@ void Test() {
     assert(binaryTree.getSize() == 2);
     assert(binaryTree.minElement() == 5);
     assert(binaryTree.maxElement() == 6);
+}
 
+void testBinaryHeap() {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~~~~~~~~~~BINARY HEAP TEST~~~~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -49,7 +49,9 @@ void Test() {
     assert(binaryHeap.getSize() == 2);
     assert(binaryHeap.existenceOfElement(5) == true);
     assert(binaryHeap.existenceOfElement(6) == true);
+}
 
+void testSet() {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     ~~~~~~~~~~~~~~SET TEST~~~~~~~~~~~~~~
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -69,4 +71,14 @@ void Test() {
     assert(set.existenceOfElement(5) == false);
     assert(set.existenceOfElement(6) == true);
     assert(set.getSize() == 2);
+}
+
+int mainTest()
+{
+    testBinaryTree();
+    testBinaryHeap();
+    testSet();
+    system("pause");
+
+    return 0;
 }

@@ -12,10 +12,14 @@ private:
     string SecondName;
     string LastName;
 
-    //time_t birthDate;
 public:
+    ~Person() = default;
+
+    Person() = default;
+
     Person(int id, string &firstname, string &secondname, string &lastname) : PersonID(id), FirstName(firstname),
-                                                                        SecondName(secondname), LastName(lastname) {}
+                                                                              SecondName(secondname),
+                                                                              LastName(lastname) {}
 
     [[nodiscard]] int getID() const {
         return PersonID;
@@ -33,7 +37,50 @@ public:
         return LastName;
     }
 
-    /*time_t getBirthDate() const{
-        return birthDate;
-    }*/
+    bool operator==(const Person &person) const {
+        return PersonID == person.PersonID;
+    }
+
+    bool operator!=(const Person &person) const {
+        return this->getID() != person.PersonID;
+    }
+
+    bool operator<(const Person &person) const {
+        if (this->getID() >= person.PersonID) {
+            return false;
+        }
+        return true;
+    }
+
+    bool operator>(const Person &person) const {
+        if (this->getID() <= person.PersonID) {
+            return false;
+        }
+        return true;
+    }
+
+    bool operator>=(const Person &person) const {
+        if (this->getID() < person.PersonID) {
+            return false;
+        }
+        return true;
+    }
+
+    bool operator<=(const Person &person) const {
+        if (this->getID() > person.PersonID) {
+            return false;
+        }
+        return true;
+    }
+
+    friend std::istream &operator>>(std::istream &istream, Person &person) {
+        istream >> person.PersonID >> person.FirstName >> person.SecondName >> person.LastName;
+        return istream;
+    }
+
+    friend std::ostream &operator<<(std::ostream &ostream, Person person) {
+        ostream << "Person ID is: " << person.PersonID << ", First name is:: " << person.FirstName << ", Second name is: "
+                << person.SecondName << ", Last name: " << person.LastName << ";\n";
+        return ostream;
+    }
 };

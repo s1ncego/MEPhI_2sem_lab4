@@ -5,8 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(lab4Buntsev main.cpp
         menu.h
-        tests.h
         set.h
         binaryTree.h
         binaryHeap.h
-        structures.h)
+        structures.h
+        tests.cpp
+        func.h)
