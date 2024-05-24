@@ -30,24 +30,12 @@ private:
         }
     }
 
-    node *search(const T elem) {
+    node *search(T elem) {
         node *nodePtr = this->root;
         while (nodePtr != nullptr) {
             if (elem < nodePtr->elem) {
                 nodePtr = nodePtr->left;
             } else if (elem > nodePtr->elem) {
-                nodePtr = nodePtr->right;
-            } else return nodePtr;
-        }
-        return nullptr;
-    }
-
-    node *searchForID(int ID) {
-        node *nodePtr = this->root;
-        while (nodePtr != nullptr) {
-            if (ID < nodePtr->elem.getID()) {
-                nodePtr = nodePtr->left;
-            } else if (ID > nodePtr->elem.getID()) {
                 nodePtr = nodePtr->right;
             } else return nodePtr;
         }
@@ -285,8 +273,8 @@ public:
         }
     }
 
-    void getFullname(int ID) {
-        node *nameNode = searchForID(ID);
+    void getFullname(T ID) {
+        node *nameNode = search(ID);
         if (nameNode == nullptr) {
             return;
         }

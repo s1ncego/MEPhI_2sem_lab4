@@ -73,12 +73,27 @@ public:
         return true;
     }
 
+    int operator++(int) {
+        return PersonID++;
+    }
+
+    int operator++() {
+        return ++PersonID;
+    }
+
     friend std::istream &operator>>(std::istream &istream, Person &person) {
-        istream >> person.PersonID >> person.FirstName >> person.SecondName >> person.LastName;
+        cout << "\nPerson ID: ";
+        istream >> person.PersonID;
+        cout << "\nFirst name: ";
+        istream >> person.FirstName;
+        cout << "\nSecond name: ";
+        istream >> person.SecondName;
+        cout << "\nLast name: ";
+        istream >> person.LastName;
         return istream;
     }
 
-    friend std::ostream &operator<<(std::ostream &ostream, Person person) {
+    friend std::ostream &operator<<(std::ostream &ostream, const Person person) {
         ostream << "Person ID is: " << person.PersonID << ", First name is:: " << person.FirstName << ", Second name is: "
                 << person.SecondName << ", Last name: " << person.LastName << ";\n";
         return ostream;

@@ -73,10 +73,10 @@ void BinaryTreeMenu(T root) {
         printBinaryTreeMenu();
         cin >> input;
 
-        int action = stoi(input);
         if (input == "STOP") {
             break;
         }
+        int action = stoi(input);
 
         switch (action) {
             case 1: { // Show elements
@@ -171,10 +171,10 @@ void BinaryTreePersonMenu(T root) {
         printBinaryTreePersonMenu();
         cin >> input;
 
-        int action = stoi(input);
         if (input == "STOP") {
             break;
         }
+        int action = stoi(input);
 
         switch (action) {
             case 1: { // Show elements
@@ -234,7 +234,10 @@ void BinaryTreePersonMenu(T root) {
                 cout << "Enter the PersonID to find: ";
                 int id;
                 cin >> id;
-                binaryTree.getFullname(id);
+
+                string str1, str2, str3;
+                Person person{id, str1, str2, str3};
+                binaryTree.getFullname(person);
 
                 break;
             }
@@ -257,10 +260,11 @@ void BinaryHeapPersonMenu(T root) {
         printPersonMenu();
         cin >> input;
 
-        int action = stoi(input);
+
         if (input == "STOP") {
             break;
         }
+        int action = stoi(input);
 
         switch (action) {
             case 1: { // Show elements
@@ -333,10 +337,10 @@ void BinaryHeapMenu(T root) {
         printMenu();
         cin >> input;
 
-        int action = stoi(input);
         if (input == "STOP") {
             break;
         }
+        int action = stoi(input);
 
         switch (action) {
             case 1: { // Show elements
@@ -411,10 +415,10 @@ void SetMenu(T initElement) {
         printMenu();
         cin >> input;
 
-        int action = stoi(input);
         if (input == "STOP") {
             break;
         }
+        int action = stoi(input);
 
         switch (action) {
             case 1: { // Show elements
@@ -489,10 +493,10 @@ void SetPersonMenu(T initElement) {
         printPersonMenu();
         cin >> input;
 
-        int action = stoi(input);
         if (input == "STOP") {
             break;
         }
+        int action = stoi(input);
 
         switch (action) {
             case 1: { // Show elements
@@ -542,7 +546,10 @@ void SetPersonMenu(T initElement) {
                 cout << "Enter the PersonID to find: ";
                 int id;
                 cin >> id;
-                set.getFullname(id);
+
+                string str1, str2, str3;
+                Person person{id, str1, str2, str3};
+                set.getFullname(person);
 
                 break;
             }

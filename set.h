@@ -47,7 +47,7 @@ public:
         this->set->Where();
     }
 
-    void getFullname(int id){
+    void getFullname(T id){
         this->set->getFullname(id);
     }
 };
